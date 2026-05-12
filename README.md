@@ -1,16 +1,68 @@
-# React + Vite
+# 💰 Mon Pourboire
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application web de calcul et distribution équitable de pourboires entre membres d'une équipe, selon les jours réellement travaillés.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Fonctionnalités principales
 
-## React Compiler
+🍽️ **Distribution équitable** : Calcul automatique du pourboire selon les jours travaillés par chaque membre
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+📅 **Sélection par calendrier** : Marquage des jours complets et demi-journées pour chaque employé
 
-## Expanding the ESLint configuration
+⚖️ **Calcul au prorata** : Part calculée selon le poids réel (jours pleins + ½ demi-journées) de chaque présence
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+👥 **Gestion d'équipe** : Ajout et suppression de membres avec persistance automatique
+
+💾 **Sauvegarde locale** : L'équipe est mémorisée entre les sessions via le stockage du navigateur
+
+---
+
+## 🛠️ Architecture technique
+
+**APIs utilisées :**
+- Aucune API externe — 100% local, zéro dépendance réseau
+
+**Composants clés :**
+- `useMembers` : Hook de gestion de l'équipe avec persistance localStorage
+- `useSelections` : Hook de sélection des jours/demi-journées par membre
+- `Calendar` : Composant de sélection de plages de dates (jour, mois, années)
+- `DistributeTab` : Onglet principal de calcul et affichage des parts
+- `ResultCard` : Affichage du résultat de distribution
+- `TeamTab` : Gestion de l'équipe persistée
+
+**Utilitaires :**
+- `dates.js` : Comptage et calcul des jours travaillés
+- `format.js` : Formatage des montants
+
+---
+
+## 🚀 Lancer le projet
+
+```bash
+npm install
+npm run dev
+```
+
+L'app tourne sur [http://localhost:5173](http://localhost:5173)
+
+**Autres commandes :**
+
+```bash
+npm run build    # Build de production
+npm run preview  # Prévisualiser le build
+npm run lint     # Linter ESLint
+```
+
+---
+
+## 🧱 Stack technique
+
+| Outil | Version |
+|-------|---------|
+| React | 19 |
+| Vite | 8 |
+| Tailwind CSS | 4 |
+
+APIs : Aucune (stockage navigateur uniquement)
+Status : ● Fonctionnel
