@@ -7,7 +7,7 @@ export default function DistributeTab({
   members, mode, onModeChange, getManual, onManualChange, getSel, getView, openIds, weightedDays,
   onToggleOpen, onDayClick, onNavView, onJumpView, onValidate, onReset, onSetHalfDays,
   canCalculate, onCalculate,
-  result
+  result, rounded, onRoundedChange
 }) {
   return (
     <>
@@ -57,7 +57,7 @@ export default function DistributeTab({
         Calculer la répartition
       </button>
 
-      {result && <ResultCard result={result} />}
+      {result && <ResultCard result={result} rounded={rounded} onRoundedChange={onRoundedChange} />}
     </>
   )
 }

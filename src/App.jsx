@@ -11,6 +11,7 @@ export default function App() {
   const [tab, setTab] = useState('distribute')
   const [tipAmount, setTipAmount] = useState('')
   const [result, setResult] = useState(null)
+  const [rounded, setRounded] = useState(false)
 
   const { members, newName, setNewName, addMember, removeMember } = useMembers()
   const {
@@ -81,6 +82,8 @@ export default function App() {
             canCalculate={canCalculate}
             onCalculate={calculate}
             result={result}
+            rounded={rounded}
+            onRoundedChange={setRounded}
           />
         )}
 
