@@ -15,7 +15,8 @@ export function roundShares(shares, total) {
   const floored = shares.map(s => Math.floor(s.share + 1e-9))
   let left = euros - floored.reduce((a, b) => a + b, 0)
   const order = shares
-    .map((s, i) => ({ i, frac: s.share - floored[i] }))
+    // Arrondi de la fraction pour que les égalités (au bruit flottant près) gardent l'ordre de la liste
+    .map((s, i) => ({ i, frac: Math.round((s.share - floored[i]) * 1e6) }))
     .sort((a, b) => b.frac - a.frac)
   for (const { i } of order) {
     if (left <= 0) break
