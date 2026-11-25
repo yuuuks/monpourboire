@@ -1,6 +1,6 @@
 import MemberRow from './MemberRow'
 
-export default function MemberList({ members, mode, getManual, onManualChange, getSel, getView, openIds, weightedDays, onToggleOpen, onDayClick, onNavView, onJumpView, onValidate, onReset, onSetHalfDays }) {
+export default function MemberList({ members, getSel, getView, openIds, weightedDays, onToggleOpen, onDayClick, onNavView, onJumpView, onValidate, onReset, onSetHalfDays }) {
   if (members.length === 0) {
     return (
       <p className="text-sm text-gray-400 text-center py-4">
@@ -15,9 +15,6 @@ export default function MemberList({ members, mode, getManual, onManualChange, g
         <MemberRow
           key={m.id}
           member={m}
-          mode={mode}
-          manual={getManual(m.id)}
-          onManualChange={val => onManualChange(m.id, val)}
           sel={getSel(m.id)}
           view={getView(m.id)}
           isOpen={openIds.has(m.id)}

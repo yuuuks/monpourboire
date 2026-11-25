@@ -1,21 +1,10 @@
 import { useState } from 'react'
 import { countDays } from '../utils/dates'
-import { parseDays } from '../utils/format'
 
 export function useSelections() {
   const [selections, setSelections] = useState({})
   const [calViews, setCalViews] = useState({})
   const [openIds, setOpenIds] = useState(new Set())
-  const [mode, setMode] = useState('manual')
-  const [manualDays, setManualDays] = useState({})
-
-  function getManual(id) {
-    return manualDays[id] ?? ''
-  }
-
-  function setManual(id, value) {
-    setManualDays(prev => ({ ...prev, [id]: value }))
-  }
 
   function getSel(id) {
     return selections[id] || { ranges: [], pending: null, halfDays: 0 }
@@ -41,7 +30,6 @@ export function useSelections() {
   }
 
   function weightedDays(id) {
-    if (mode === 'manual') return parseDays(getManual(id))
     const sel = getSel(id)
     const total = countDays(sel.ranges)
     const halves = Math.min(sel.halfDays || 0, total)
@@ -86,7 +74,6 @@ export function useSelections() {
 
   function removeSelection(id) {
     setSelections(prev => { const n = { ...prev }; delete n[id]; return n })
-    setManualDays(prev => { const n = { ...prev }; delete n[id]; return n })
     setOpenIds(prev => { const n = new Set(prev); n.delete(id); return n })
   }
 
@@ -115,6 +102,5 @@ export function useSelections() {
     getSel, getView, navView, jumpView, weightedDays,
     handleDayClick, resetSelection, setHalfDays, removeSelection,
     openIds, toggleOpen, closeId,
-    mode, setMode, getManual, setManual,
   }
 }

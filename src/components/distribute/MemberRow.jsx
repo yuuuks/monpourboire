@@ -2,29 +2,9 @@ import { countDays } from '../../utils/dates'
 import { formatUnits } from '../../utils/format'
 import Calendar from '../calendar/Calendar'
 
-export default function MemberRow({ member, mode, manual, onManualChange, sel, view, isOpen, units, onToggleOpen, onDayClick, onNavView, onJumpView, onValidate, onReset, onSetHalfDays }) {
+export default function MemberRow({ member, sel, view, isOpen, units, onToggleOpen, onDayClick, onNavView, onJumpView, onValidate, onReset, onSetHalfDays }) {
   const days = countDays(sel.ranges)
   const halves = sel.halfDays || 0
-
-  if (mode === 'manual') {
-    return (
-      <li className={`rounded-xl border transition-all ${units > 0 ? 'border-amber-300' : 'border-gray-200'}`}>
-        <label className="flex items-center gap-3 px-4 py-3">
-          <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-600 font-bold text-sm flex items-center justify-center flex-shrink-0">
-            {(member.name[0] || '?').toUpperCase()}
-          </div>
-          <span className="flex-1 font-medium text-sm text-gray-700">{member.name}</span>
-          <input
-            type="text" inputMode="decimal" placeholder="0"
-            value={manual}
-            onChange={e => onManualChange(e.target.value)}
-            className="w-20 border border-gray-200 rounded-lg px-3 py-1.5 text-right font-mono focus:outline-none focus:ring-2 focus:ring-amber-400"
-          />
-          <span className="text-sm text-gray-500">j</span>
-        </label>
-      </li>
-    )
-  }
 
   return (
     <li className={`rounded-xl border transition-all ${units > 0 ? 'border-amber-300' : 'border-gray-200'}`}>

@@ -18,7 +18,6 @@ export default function App() {
     getSel, getView, navView, jumpView, weightedDays,
     handleDayClick, resetSelection, setHalfDays, removeSelection,
     openIds, toggleOpen, closeId,
-    mode, setMode, getManual, setManual,
   } = useSelections()
 
   function handleRemoveMember(id) {
@@ -64,10 +63,6 @@ export default function App() {
             tipAmount={tipAmount}
             onTipChange={e => { setTipAmount(e.target.value); setResult(null) }}
             members={members}
-            mode={mode}
-            onModeChange={m => { setMode(m); setResult(null) }}
-            getManual={getManual}
-            onManualChange={(id, val) => { setManual(id, val); setResult(null) }}
             getSel={getSel}
             getView={getView}
             openIds={openIds}
