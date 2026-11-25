@@ -1,5 +1,3 @@
-import { formatUnits } from '../../utils/format'
-
 export default function ResultCard({ result }) {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-amber-200 p-5">
