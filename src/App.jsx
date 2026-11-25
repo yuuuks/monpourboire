@@ -11,13 +11,13 @@ export default function App() {
   const [tab, setTab] = useState('distribute')
   const [tipAmount, setTipAmount] = useState('')
   const [result, setResult] = useState(null)
-  const [rounded, setRounded] = useState(false)
 
   const { members, newName, setNewName, addMember, removeMember } = useMembers()
   const {
     getSel, getView, navView, jumpView, weightedDays,
     handleDayClick, resetSelection, setHalfDays, removeSelection,
     openIds, toggleOpen, closeId,
+    mode, setMode, getManual, setManual,
   } = useSelections()
 
   function handleRemoveMember(id) {
@@ -63,6 +63,10 @@ export default function App() {
             tipAmount={tipAmount}
             onTipChange={e => { setTipAmount(e.target.value); setResult(null) }}
             members={members}
+            mode={mode}
+            onModeChange={m => { setMode(m); setResult(null) }}
+            getManual={getManual}
+            onManualChange={(id, val) => { setManual(id, val); setResult(null) }}
             getSel={getSel}
             getView={getView}
             openIds={openIds}
@@ -77,8 +81,6 @@ export default function App() {
             canCalculate={canCalculate}
             onCalculate={calculate}
             result={result}
-            rounded={rounded}
-            onRoundedChange={setRounded}
           />
         )}
 
