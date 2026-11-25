@@ -3,6 +3,8 @@ export function formatUnits(u) {
 }
 
 export function parseDays(str) {
-  const n = parseFloat(String(str).replace(',', '.'))
+  const s = String(str).trim()
+  if (!/^(\d+[.,]?\d*|[.,]\d+)$/.test(s)) return 0
+  const n = parseFloat(s.replace(',', '.'))
   return n > 0 ? n : 0
 }
